@@ -10,6 +10,8 @@ prefix = "?"
 
 bot = commands.Bot(command_prefix=prefix)
 
+bot.load_extension('cog_reloader')
+
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py"):
         try:
@@ -38,10 +40,8 @@ async def on_message(message):
             thumbnail=message.author.avatar_url
             ).build()
         await message.channel.send(embed=embed)
-        
-    if message.channel.id == 887779003040153630:
-        await message.add_reaction("\U00002705")
-        await message.add_reaction("\U0000274e")
+    
+    await bot.process_commands(message)
 
 bot.run(os.environ.get('token'))
 
