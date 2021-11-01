@@ -11,6 +11,7 @@ class Applications(commands.Cog):
         if message.author == self.bot.user:
             return
 
+        #add reactions to vote on applications
         if message.channel.id == 887779003040153630:
             await message.add_reaction("\U00002705")
             await message.add_reaction("\U0000274e")

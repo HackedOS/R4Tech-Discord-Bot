@@ -1,17 +1,23 @@
+# Imports
 from dotenv import load_dotenv
 import os
 import discord
 from discord.ext import commands
 from MaxEmbeds import EmbedBuilder
+
+#Load .env
 load_dotenv()
 
-prefix = "?"
+#define prefix
+prefix = "#"
 
-
+#define bot object
 bot = commands.Bot(command_prefix=prefix)
 
+#cog reload disable in production
 bot.load_extension('cog_reloader')
 
+#load cogs
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py"):
         try:
@@ -21,10 +27,12 @@ for filename in os.listdir("./cogs"):
             print(f'Failed to load Cog : {filename}')
             raise e
 
-@bot.event
+#Info tell if bot is logged in
+@bot.listen()
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
 
+#test shit
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
@@ -43,5 +51,6 @@ async def on_message(message):
     
     await bot.process_commands(message)
 
+#start the bot
 bot.run(os.environ.get('token'))
 
