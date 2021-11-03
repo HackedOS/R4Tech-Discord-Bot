@@ -35,7 +35,7 @@ class Applications(commands.Cog):
                             member: discord.PermissionOverwrite(read_messages=True),
                             admin_role: discord.PermissionOverwrite(read_messages=True)
                         }
-                        channel = await self.bot.get_guild(payload.guild_id).create_text_channel("application-" + payload.member.name,category=self.bot.get_channel(887778958714748928))
+                        channel = await self.bot.get_guild(payload.guild_id).create_text_channel("application-" + payload.member.name,category=self.bot.get_channel(887778958714748928),overwrites=overwrites)
                         ticket = (payload.user_id, channel.id)
                         create_ticket(self.conn,ticket)
                         embed = EmbedBuilder(
