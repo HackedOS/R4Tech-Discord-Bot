@@ -116,3 +116,9 @@ dmypy.json
 
 # VS Code
 .vscode/
+
+#notes
+notes.md
+
+#db
+r4tech.db
